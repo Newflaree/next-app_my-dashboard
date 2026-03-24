@@ -1,4 +1,4 @@
-import { PokemonGrid, PokemonsResponse, SimplePokemon } from "@/app/pokemons";
+import { PokemonGrid, PokemonsResponse, SimplePokemon } from "@/src/pokemons";
 
 const getPokemons = async (limit = 20, offset = 0) => {
   const data: PokemonsResponse = await fetch(
