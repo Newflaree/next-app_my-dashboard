@@ -1,7 +1,20 @@
 import { Pokemon } from "@/src/pokemons";
+import { Metadata } from "next";
 
 interface PokemonPageProps {
   params: { id: string };
+}
+
+export async function generateMetadata({
+  params,
+}: PokemonPageProps): Promise<Metadata> {
+  const { id: paramId } = await params;
+  const { id, name } = await getPokemon(paramId);
+
+  return {
+    title: `${id} - ${name}`,
+    description: `Página del pokemon ${name}`,
+  };
 }
 
 const getPokemon = async (id: string): Promise<Pokemon> => {
@@ -21,7 +34,7 @@ export default async function PokemonPage({ params }: PokemonPageProps) {
   return (
     <div>
       <h1>Pokemon: {id}</h1>
-      <div>{JSON.stringify(pokemon)}</div>
+      {pokemon.name}
     </div>
   );
 }
